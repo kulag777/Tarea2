@@ -271,13 +271,10 @@ void buscar_por_decada(Map *pelis_bydecada) {
 
   MapPair *pair = map_first(pelis_bydecada);
   while (pair != NULL) {
-    List *pelis_decada = pair->value;
-    printf("Películas de la década %d:\n", decada);
-    for (Film *peli = list_first(pelis_decada); peli != NULL;
-         peli = list_next(pelis_decada)) {
-      decadaCmp = (peli->year / 10) * 10;
-      if (decada == peli->year)
-        printf("Título: %s, Año: %d\n", peli->title, peli->year);
+    Film *peli = pair->value;
+    decadaCmp = (peli->year / 10) * 10;
+    if (decada == decadaCmp) {
+      printf("Título: %s, Año: %d\n", peli->title, peli->year);
     }
     pair = map_next(pelis_bydecada);
   }
@@ -329,21 +326,22 @@ void buscar_por_decada_y_genero(Map *pelis_bydecada, Map *pelis_bygenero) {
   MapPair *pair_decada = map_search(pelis_bydecada, &decada);
   MapPair *pair_genero = map_search(pelis_bygenero, genero);
 
-  /* if (pair_decada != NULL && pair_genero != NULL) {
-        List *pelis_decada = pair_decada->value;
-        List *pelis_del_genero = pair_genero->value;
+  if (pair_decada != NULL && pair_genero != NULL) {
+    List *pelis_decada = pair_decada->value;
+    List *pelis_del_genero = pair_genero->value;
 
-        printf("Películas de la década %d y género %s:\n", decada, genero);
+    printf("Películas de la década %d y género %s:\n", decada, genero);
 
-        for (Film *peli = list_first(pelis_decada); peli != NULL; peli =
-list_next(pelis_decada)) { if (list_contains(pelis_del_genero, peli)) {
-                printf("Título: %s, Año: %d\n", peli->title, peli->year);
-            }
-        }
-    } else {
-        printf("No se encontraron películas para esa combinación de década y
-género.\n");
+    for (Film *peli = list_first(pelis_decada); peli != NULL;
+         peli = list_next(pelis_decada)) {
+      if (list_contains(pelis_del_genero, peli)) {
+        printf("Título: %s, Año: %d\n", peli->title, peli->year);
+      }
     }
+  } else {
+    printf("No se encontraron películas para esa combinación de década y "
+           "género.\n");
+  }
 }
 
 int main() {
