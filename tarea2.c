@@ -29,12 +29,9 @@ void mostrarMenuPrincipal() {
 }
 
 int is_equal_str(void *key1, void *key2) {
-    return strcmp((char *)key1, (char *)key2) == 0;
+    return strcmp((char *)key1, (char *)key2) == 0; // Retorna 1 si son iguales
 }
 
-int is_equal_int(void *key1, void *key2) {
-    return *(int *)key1 == *(int *)key2; // Compara valores enteros directamente
-}
 
 void cargar_peliculas(Map *pelis_byid, Map *pelis_bygenero, Map *pelis_bydirector, Map *pelis_bydecada, Map *pelis_byrating) {
     FILE *archivo = fopen("data/Top1500.csv", "r");
