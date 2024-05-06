@@ -31,3 +31,5 @@ buscar_por_decada: Encuentra películas por década. (se tiene que poner como 19
 buscar_por_rating: Busca películas dentro de un rango de calificación.
 
 buscar_por_decada_y_genero: Busca películas que coincidan con una combinación de década y género.
+
+observaciones: NO FUNCIONAN LAS SIGUIENTES OPCIONES DEL MENU. opcion de rango (6) por calificaciones no funciona y realmente no sabemos cual es el error, lo mismo con la opcion (7) de decada y genero 
