@@ -24,7 +24,7 @@ buscar_por_director: Busca todas las películas dirigidas por un director espec�
 
 buscar_por_genero: Encuentra todas las películas de un género específico.
 
-buscar_por_decada: Encuentra películas por década.
+buscar_por_decada: Encuentra películas por década. (se tiene que poner como 1990, 1970, y asi), no funciona si se escribe el anho mal.
 
 buscar_por_rating: Busca películas dentro de un rango de calificación.
 
