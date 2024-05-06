@@ -1,4 +1,6 @@
-
+#integrantes 
+CRISTOBAL MARTINEZ,
+BENJAMIN ESPINOZA
 
 Para ejecutar la tarea2 primero debemos compilar (en la carpeta raíz)
 ````
