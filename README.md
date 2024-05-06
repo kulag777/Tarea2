@@ -1,4 +1,4 @@
-En este *repl* puedes encontrar varios ejemplos que te pueden ayudar con las tareas de estructura.
+
 
 Para ejecutar la tarea2 primero debemos compilar (en la carpeta raíz)
 ````
@@ -10,23 +10,22 @@ Y luego ejecutar:
 ./tarea2
 ````
 
-## TDAs
-En la carpeta `tdas` se encuentran implementados distintos TDAs que puedes utilizar (lista, pila, cola, cola con prioridad y mapas). 
+Funcionalidades
+Menú Principal: La función mostrarMenuPrincipal muestra las opciones disponibles en el menú principal.
+El usuario puede elegir entre cargar películas, buscar por distintos criterios y salir del programa.
 
-Las implementaciones no son las más eficientes (todas usan como estructura de datos una **lista enlazada**), por lo que puedes reemplazarlas por las que has realizado en los labs.
+Cargar Películas: La función cargar_peliculas carga películas desde un archivo CSV y las inserta en varios mapas para búsquedas posteriores. Los mapas incluyen categorías como ID, género, director, década y calificación.
 
-## Otros códigos (en carpeta examples)
-Para ejecutar los distintos ejemplos que hay en la carpeta `examples`, primero debes compilarlos. Si estamos en la carpeta raíz:
-````
-gcc tdas/*.c examples/example2_menu.c -Wno-unused-result -o example
-````
-Y luego ejecutarlos:
-````
-./example
-````
+Búsqueda de Películas: Hay varias funciones que permiten buscar películas:
 
-Se incluyen los siguientes ejemplos:
-* `example1_list`: Uso del TDA Lista, inserción y eliminación de elementos.
-* `example2_menu`: Ejemplo de menú con submenús.
-* `example3_readcsv`: Ejemplo de lectura desde un archivo csv y almacenamiento en datos estructurados.
-* `example4_map`: Ejemplo de uso del TDA mapa.
+buscar_por_id: Busca una película por su ID y muestra su título y año.
+
+buscar_por_director: Busca todas las películas dirigidas por un director específico.
+
+buscar_por_genero: Encuentra todas las películas de un género específico.
+
+buscar_por_decada: Encuentra películas por década.
+
+buscar_por_rating: Busca películas dentro de un rango de calificación.
+
+buscar_por_decada_y_genero: Busca películas que coincidan con una combinación de década y género.

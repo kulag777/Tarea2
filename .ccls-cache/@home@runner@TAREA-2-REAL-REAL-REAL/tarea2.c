@@ -103,7 +103,6 @@ void cargar_peliculas(Map *pelis_byid, Map *pelis_bygenero,
       list_pushBack(pelis_del_director, peli);
     } else {
       char *token = strtok(directores, ",");
-      printf("token: %s\n", token);
       while (token != NULL) {
         if (map_search(pelis_bydirector, token) == NULL) {
           List *pelis_del_director = list_create();
@@ -314,35 +313,50 @@ void buscar_por_rating(Map *pelis_byrating) {
   }
 }
 
-void buscar_por_decada_y_genero(Map *pelis_bydecada, Map *pelis_bygenero) {
-  int decada;
-  char genero[100];
+    void buscar_por_decada_y_genero(Map *pelis_bydecada, Map *pelis_bygenero) {
+        int decada;
+        char genero[100];
 
-  printf("Ingrese la década de la película: ");
-  scanf("%d", &decada);
-  printf("Ingrese el género de la película: ");
-  scanf("%s", genero);
+        printf("Ingrese la década de la película: ");
+        scanf("%d", &decada);
+        printf("Ingrese el género de la película: ");
+        scanf("%s", genero);
 
-  MapPair *pair_decada = map_search(pelis_bydecada, &decada);
-  MapPair *pair_genero = map_search(pelis_bygenero, genero);
+        // Busca las listas para la década y el género
+        MapPair *pair_decada = map_search(pelis_bydecada, &decada);
+        MapPair *pair_genero = map_search(pelis_bygenero, genero);
 
-  if (pair_decada != NULL && pair_genero != NULL) {
-    List *pelis_decada = pair_decada->value;
-    List *pelis_del_genero = pair_genero->value;
+        if (pair_decada != NULL && pair_genero != NULL) {
+            List *pelis_decada = pair_decada->value;
+            List *pelis_del_genero = pair_genero->value;
 
-    printf("Películas de la década %d y género %s:\n", decada, genero);
+            printf("Películas de la década %d y género %s:\n", decada, genero);
 
-    for (Film *peli = list_first(pelis_decada); peli != NULL;
-         peli = list_next(pelis_decada)) {
-      if (list_contains(pelis_del_genero, peli)) {
-        printf("Título: %s, Año: %d\n", peli->title, peli->year);
-      }
+            // Creamos un iterador para recorrer la lista de películas por década
+            Film *pelicula_decada = list_first(pelis_decada);
+
+            // Recorre la lista de películas por década
+            while (pelicula_decada != NULL) {
+                // Recorre la lista de películas por género
+                for (Film *pelicula_genero = list_first(pelis_del_genero);
+                     pelicula_genero != NULL;
+                     pelicula_genero = list_next(pelis_del_genero)) {
+
+                    // Si la película aparece en ambas listas, la mostramos
+                    if (pelicula_decada == pelicula_genero) {
+                        printf("Título: %s, Año: %d\n",
+                               pelicula_decada->title, pelicula_decada->year);
+                        break; // No necesitamos seguir recorriendo esta lista
+                    }
+                }
+
+                pelicula_decada = list_next(pelis_decada);
+            }
+        } else {
+            printf("No se encontraron películas para esa combinación de década y género.\n");
+        }
     }
-  } else {
-    printf("No se encontraron películas para esa combinación de década y "
-           "género.\n");
-  }
-}
+
 
 int main() {
   char opcion; // Variable para almacenar una opción ingresada por el usuario
@@ -378,13 +392,13 @@ int main() {
       buscar_por_genero(pelis_bygenero);
       break;
     case '5':
-      buscar_por_decada(pelis_bydecada);
+      buscar_por_decada(pelis_byid);
       break;
     case '6':
       buscar_por_rating(pelis_byrating);
       break;
     case '7':
-      // buscar_por_decada_y_genero(pelis_bydecada, pelis_bygenero);
+      buscar_por_decada_y_genero(pelis_bydecada, pelis_bygenero);
       break;
     default:
     }
